@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://3j0eyqoluh4r"]
+
+[ext_resource type="Script" uid="uid://ig0wjs30qvof" path="res://Scenes/Player/player.gd" id="1_s0eop"]
+[ext_resource type="Script" uid="uid://b7ccx4ytwgvs6" path="res://Scenes/Player/ability_manager.gd" id="2_ft8w5"]
+[ext_resource type="Texture2D" uid="uid://b0c3objavwor6" path="res://Art/Sprites/player_placeholder.png" id="2_h54ih"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ft8w5"]
+radius = 16.0
+
+[node name="Player" type="CharacterBody2D" unique_id=1420246191]
+script = ExtResource("1_s0eop")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1688804713]
+shape = SubResource("CircleShape2D_ft8w5")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=687454286]
+modulate = Color(0, 1, 0, 1)
+texture = ExtResource("2_h54ih")
+
+[node name="SwapCooldownTimer" type="Timer" parent="." unique_id=1849481050]
+one_shot = true
+
+[node name="Node" type="Node" parent="." unique_id=941087961]
+script = ExtResource("2_ft8w5")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=943997206]

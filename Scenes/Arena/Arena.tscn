@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://cmnth7ovc5sta"]
+
+[ext_resource type="PackedScene" uid="uid://c2r8h550om3ts" path="res://Scenes/Arena/SpawnPoint.tscn" id="1_lh3uc"]
+[ext_resource type="Script" uid="uid://b658payp313sr" path="res://Scenes/Arena/wave_manager.gd" id="2_mugxw"]
+[ext_resource type="Texture2D" uid="uid://b0c3objavwor6" path="res://Art/Sprites/player_placeholder.png" id="3_2fwkt"]
+
+[node name="Arena" type="Node2D" unique_id=339439941]
+
+[node name="SpawnPoint1" parent="." unique_id=2062153922 groups=["spawn_points"] instance=ExtResource("1_lh3uc")]
+position = Vector2(195, 154)
+
+[node name="SpawnPoint2" parent="." unique_id=825647557 groups=["spawn_points"] instance=ExtResource("1_lh3uc")]
+position = Vector2(860, 199)
+
+[node name="SpawnPoint3" parent="." unique_id=879005965 groups=["spawn_points"] instance=ExtResource("1_lh3uc")]
+position = Vector2(337, 439)
+
+[node name="SpawnPoint4" parent="." unique_id=1809343652 groups=["spawn_points"] instance=ExtResource("1_lh3uc")]
+position = Vector2(798, 546)
+
+[node name="WaveManager" type="Node" parent="." unique_id=1606259470]
+script = ExtResource("2_mugxw")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1812546900]
+position = Vector2(732, 392)
+texture = ExtResource("3_2fwkt")
