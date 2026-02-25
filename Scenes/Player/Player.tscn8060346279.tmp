@@ -3,6 +3,8 @@
 [ext_resource type="Script" uid="uid://ig0wjs30qvof" path="res://Scenes/Player/player.gd" id="1_s0eop"]
 [ext_resource type="Script" uid="uid://b7ccx4ytwgvs6" path="res://Scenes/Player/ability_manager.gd" id="2_ft8w5"]
 [ext_resource type="Texture2D" uid="uid://b0c3objavwor6" path="res://Art/Sprites/player_placeholder.png" id="2_h54ih"]
+[ext_resource type="Script" uid="uid://b5wynnn1yaig4" path="res://Scripts/ability_resource.gd" id="4_jmcll"]
+[ext_resource type="Resource" uid="uid://btrm13j6tx6ng" path="res://Resources/Abilities/SwordAbility.tres" id="5_4wape"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ft8w5"]
 radius = 16.0
@@ -22,5 +24,6 @@ one_shot = true
 
 [node name="AbilityManager" type="Node" parent="." unique_id=941087961]
 script = ExtResource("2_ft8w5")
+starting_abilities = Array[ExtResource("4_jmcll")]([ExtResource("5_4wape"), ExtResource("5_4wape"), ExtResource("5_4wape"), ExtResource("5_4wape")])
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=943997206]

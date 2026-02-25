@@ -33,8 +33,6 @@ func _ready():
 	
 	# Отложенный запуск волны
 	call_deferred("start_wave", 1)
-	
-	print("WaveManager готов")
 
 func start_wave(wave_number: int = -1):
 	if wave_number > 0:
@@ -50,21 +48,51 @@ func start_wave(wave_number: int = -1):
 	wave_timer.wait_time = wave_duration
 	wave_timer.start()
 	
-	print("Волна ", current_wave, " началась")
 	emit_signal("wave_started", current_wave)
-
-func _spawn_enemy():
-	if not is_wave_active: return
-	if enemies_alive >= enemies_per_wave: return
 	
-	# TODO: реальный спавн врага
+func _spawn_enemy():
+	if not is_wave_active: 
+		return
+	if enemies_alive >= enemies_per_wave: 
+		return
+	if enemy_types.is_empty():
+		return
+	if spawn_points.is_empty():
+		return
+	
+	# Выбираем случайного врага из списка
+	var enemy_scene = enemy_types[randi() % enemy_types.size()]
+	var enemy = enemy_scene.instantiate()
+	
+	# Выбираем случайную точку спавна
+	var spawn_point = spawn_points[randi() % spawn_points.size()]
+	enemy.global_position = spawn_point.global_position
+	
+	# Добавляем на сцену (родитель WaveManager'а — это Arena)
+	get_parent().add_child(enemy)
+	
+	# Подключаем сигнал смерти
+	if enemy.has_signal("died"):
+		enemy.died.connect(_on_enemy_died)
+	
 	enemies_alive += 1
-	print("Спавн врага. Живых: ", enemies_alive)
-	emit_signal("enemy_spawned", null)
+	emit_signal("enemy_spawned", enemy)
 
 func _on_enemy_died(ability_resource: AbilityResource):
 	enemies_alive -= 1
-	print("Враг умер. Живых: ", enemies_alive)
+	
+	# Создаём уникальную версию способности
+	if ability_resource and ability_resource.id == "sword":
+		var new_resource = ability_resource.duplicate()
+		var random_damage = randi() % 30 + 10  # от 10 до 40
+		new_resource.base_damage = random_damage
+		new_resource.display_name = "меч lvl" + str(random_damage)
+		ability_resource = new_resource
+	
+	# Передаём способность игроку
+	var player = get_tree().get_first_node_in_group("players")
+	if player and player.ability_manager:
+		player.ability_manager.add_ability(ability_resource)
 	
 	if enemies_alive == 0:
 		_complete_wave()
@@ -74,7 +102,6 @@ func _complete_wave():
 	spawn_timer.stop()
 	wave_timer.stop()
 	
-	print("Волна ", current_wave, " завершена")
 	emit_signal("wave_completed", current_wave)
 	
 	await get_tree().create_timer(2.0).timeout
@@ -86,4 +113,3 @@ func _refresh_spawn_points():
 		for point in points:
 			if point is Marker2D:
 				spawn_points.append(point)
-		print("Найдено точек спавна: ", spawn_points.size())

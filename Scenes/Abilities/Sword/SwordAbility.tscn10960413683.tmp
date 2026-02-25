@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://bcjklv5naiwlu"]
+
+[ext_resource type="Script" uid="uid://r6aymp8doboq" path="res://Scenes/Abilities/Sword/sword_ability.gd" id="1_7r6p0"]
+[ext_resource type="Texture2D" uid="uid://b0c3objavwor6" path="res://Art/Sprites/player_placeholder.png" id="2_i6a27"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i6a27"]
+size = Vector2(32, 32)
+
+[node name="SwordAbility" type="Node2D" unique_id=2088924012]
+script = ExtResource("1_7r6p0")
+damage = null
+
+[node name="cooldown_timer" type="Timer" parent="." unique_id=861378431]
+wait_time = 0.5
+one_shot = true
+
+[node name="hitbox" type="Area2D" parent="." unique_id=1748502404]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox" unique_id=244573073]
+position = Vector2(30, 0)
+shape = SubResource("RectangleShape2D_i6a27")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1924656775]
+position = Vector2(30, 0)
+texture = ExtResource("2_i6a27")

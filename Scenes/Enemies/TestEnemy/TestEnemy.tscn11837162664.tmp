@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://d0v8cm0qqt6vj"]
+
+[ext_resource type="PackedScene" uid="uid://cigk56ptydt1p" path="res://Scenes/Enemies/BaseEnemy/BaseEnemy.tscn" id="1_m1lps"]
+[ext_resource type="Script" uid="uid://c2u3f530hwykw" path="res://Scenes/Enemies/TestEnemy/test_enemy.gd" id="2_s6xpb"]
+[ext_resource type="Texture2D" uid="uid://b0c3objavwor6" path="res://Art/Sprites/player_placeholder.png" id="2_tbf5y"]
+[ext_resource type="Resource" uid="uid://btrm13j6tx6ng" path="res://Resources/Abilities/SwordAbility.tres" id="3_y3882"]
+
+[node name="BaseEnemy" unique_id=594929671 instance=ExtResource("1_m1lps")]
+script = ExtResource("2_s6xpb")
+ability_drop = ExtResource("3_y3882")
+
+[node name="Sprite2D" parent="." index="1" unique_id=1768262091]
+texture = ExtResource("2_tbf5y")

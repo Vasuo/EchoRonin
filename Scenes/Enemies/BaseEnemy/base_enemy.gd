@@ -42,14 +42,12 @@ func _ready():
 	
 	# Добавляем себя в группу enemies
 	add_to_group("enemies")
-	
-	print("Враг готов, здоровье: ", health)
 
 func _process(delta):
 	_process_state(delta)
 
 func _enter_state(state: State) -> void:
-	print("Вошли в состояние: ", state)
+	pass
 
 func _exit_state(state: State) -> void:
 	pass
@@ -67,13 +65,11 @@ func take_damage(amount: int, source: Node2D = null):
 	health -= amount
 	emit_signal("health_changed", health, max_health)
 	
-	print("Враг получил урон: ", amount, " осталось здоровья: ", health)
 	
 	if health <= 0:
 		die()
 
 func die():
-	print("Враг умер")
 	emit_signal("died", ability_drop)
 	queue_free()
 

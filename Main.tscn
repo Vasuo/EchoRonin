@@ -2,9 +2,12 @@
 
 [ext_resource type="PackedScene" uid="uid://cmnth7ovc5sta" path="res://Scenes/Arena/Arena.tscn" id="1_uu6xs"]
 [ext_resource type="PackedScene" uid="uid://3j0eyqoluh4r" path="res://Scenes/Player/Player.tscn" id="2_r0du0"]
+[ext_resource type="PackedScene" uid="uid://di62oi28jjgkw" path="res://MainUI.tscn" id="3_r0du0"]
 
 [node name="Main" type="Node2D" unique_id=2049340293]
 
 [node name="Arena" parent="." unique_id=339439941 instance=ExtResource("1_uu6xs")]
 
 [node name="Player" parent="." unique_id=1420246191 instance=ExtResource("2_r0du0")]
+
+[node name="MainUi" parent="." unique_id=1139714267 instance=ExtResource("3_r0du0")]

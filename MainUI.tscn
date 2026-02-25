@@ -1,0 +1,93 @@
+[gd_scene format=3 uid="uid://di62oi28jjgkw"]
+
+[ext_resource type="Script" uid="uid://dciwmi1oeq0xp" path="res://main_ui.gd" id="1_vfs0v"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oogut"]
+bg_color = Color(0.03529412, 0.07450981, 0.99607843, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0, 1, 1, 1)
+
+[node name="MainUi" type="CanvasLayer" unique_id=1139714267]
+script = ExtResource("1_vfs0v")
+
+[node name="MainControl" type="Control" parent="." unique_id=2010010242]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MainMargin" type="MarginContainer" parent="MainControl" unique_id=197353492]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="SlotsContainer" type="HBoxContainer" parent="MainControl/MainMargin" unique_id=19030646]
+layout_mode = 2
+size_flags_vertical = 8
+
+[node name="Slot1" type="PanelContainer" parent="MainControl/MainMargin/SlotsContainer" unique_id=1830297247]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_oogut")
+
+[node name="Label" type="Label" parent="MainControl/MainMargin/SlotsContainer/Slot1" unique_id=1494938560]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 20
+text = "sword"
+
+[node name="Slot2" type="PanelContainer" parent="MainControl/MainMargin/SlotsContainer" unique_id=204545611]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_oogut")
+
+[node name="Label" type="Label" parent="MainControl/MainMargin/SlotsContainer/Slot2" unique_id=1757059794]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 20
+text = "sword"
+
+[node name="Slot3" type="PanelContainer" parent="MainControl/MainMargin/SlotsContainer" unique_id=1359338115]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_oogut")
+
+[node name="Label" type="Label" parent="MainControl/MainMargin/SlotsContainer/Slot3" unique_id=646900682]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 20
+text = "sword"
+
+[node name="Slot4" type="PanelContainer" parent="MainControl/MainMargin/SlotsContainer" unique_id=1189690881]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_oogut")
+
+[node name="Label" type="Label" parent="MainControl/MainMargin/SlotsContainer/Slot4" unique_id=792132044]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 20
+text = "sword"
+
+[node name="HealthBar" type="ProgressBar" parent="MainControl/MainMargin" unique_id=2053645477]
+custom_minimum_size = Vector2(500, 50)
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="WaveLabel" type="Label" parent="MainControl/MainMargin" unique_id=331068611]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 24
