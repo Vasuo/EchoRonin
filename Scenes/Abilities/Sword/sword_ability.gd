@@ -1,68 +1,50 @@
-extends Node2D
+extends Ability
 class_name SwordAbility
 
-@export var data: AbilityResource
 @export var damage: int = 25
 
-@onready var cooldown_timer: Timer = $cooldown_timer
 @onready var hitbox: Area2D = $hitbox
 @onready var sprite: Sprite2D = $Sprite2D
-
-var can_attack: bool = true
-var player: Node2D
-
-func initialize(resource: AbilityResource):
-	data = resource
-	player = get_parent() as Node2D
-	damage = resource.base_damage
-	
-func activate() -> void:
-	if not can_attack or not player:
-		pass
-		return
-	_perform_attack()
-
-func _perform_attack():
-	can_attack = false
-	cooldown_timer.start()
-	
-	# Визуальный фидбек
-	sprite.visible = true
-	sprite.global_position = player.global_position + Vector2(32, 0).rotated(player.global_rotation)
-	sprite.global_rotation = player.global_rotation
-	
-	# Физический запрос
-	var space_state = get_world_2d().direct_space_state
-	var query = PhysicsShapeQueryParameters2D.new()
-	
-	# Квадратный хитбокс 32x32
-	var rect = RectangleShape2D.new()
-	rect.size = Vector2(32, 32)
-	query.shape = rect
-	
-	# Позиция: центр квадрата на расстоянии 32 пикселя ПЕРЕД игроком
-	var offset = Vector2(32, 0).rotated(player.global_rotation)
-	query.transform = Transform2D.IDENTITY.rotated(player.global_rotation)
-	query.transform.origin = player.global_position + offset
-	
-	query.collision_mask = 1
-	
-	await get_tree().process_frame
-	await get_tree().process_frame
-	
-	var results = space_state.intersect_shape(query)
-	
-	for result in results:
-		var body = result.collider
-		if body and body != player and body.has_method("take_damage"):
-			body.take_damage(damage, player)
-	
-	sprite.visible = false
+@onready var hitbox_shape: CollisionShape2D = $hitbox/CollisionShape2D
 
 func _ready():
-	cooldown_timer.timeout.connect(_on_cooldown_timeout)
+	# Подключаем сигнал попадания
+	hitbox.body_entered.connect(_on_hitbox_body_entered)
+	hitbox.monitoring = false
 	sprite.visible = false
+
+func activate(player: Player, direction: Vector2) -> void:
+	sprite.visible = true
+	sprite.global_position = player.global_position + direction * 32
+	sprite.global_rotation = direction.angle()
+	
+	# ЗВУК: взмах мечом
+	if AudioManager:
+		# 3 вариации: weapon_swing_1, weapon_swing_2, weapon_swing_3
+		if AudioManager.sound_effects.has("weapon_swing_1"):
+			var variation = randi() % 3 + 1
+			AudioManager.play_sound("weapon_swing_" + str(variation), player.global_position)
+
+# Вызывается из AnimationPlayer для включения хитбокса
+func enable_hitbox():
+	hitbox.monitoring = true
+
+# Вызывается из AnimationPlayer для выключения хитбокса
+func disable_hitbox():
 	hitbox.monitoring = false
 
-func _on_cooldown_timeout():
-	can_attack = true
+func _on_hitbox_body_entered(body):
+	if body is BaseEnemy and body.has_method("take_damage"):
+		body.take_damage(damage, get_parent())
+		
+		# ЗВУК: попадание по врагу
+		if AudioManager:
+			# 2 вариации: weapon_hit_1, weapon_hit_2
+			if AudioManager.sound_effects.has("weapon_hit_1"):
+				var variation = randi() % 2 + 1
+				AudioManager.play_sound("weapon_hit_" + str(variation), body.global_position)
+		
+		hitbox.monitoring = false
+
+func get_animation_name(direction_string: String) -> String:
+	return "attack_" + direction_string

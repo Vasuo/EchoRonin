@@ -42,44 +42,112 @@ custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_oogut")
 
+[node name="TextureRect" type="TextureRect" parent="MainControl/MainMargin/SlotsContainer/Slot1" unique_id=1625930382]
+layout_mode = 2
+stretch_mode = 5
+
 [node name="Label" type="Label" parent="MainControl/MainMargin/SlotsContainer/Slot1" unique_id=1494938560]
 layout_mode = 2
 size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 20
 text = "sword"
+
+[node name="MarginContainer" type="MarginContainer" parent="MainControl/MainMargin/SlotsContainer/Slot1" unique_id=1132462067]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+
+[node name="KeyLabel" type="Label" parent="MainControl/MainMargin/SlotsContainer/Slot1/MarginContainer" unique_id=1058135346]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 20
+text = "1"
 
 [node name="Slot2" type="PanelContainer" parent="MainControl/MainMargin/SlotsContainer" unique_id=204545611]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_oogut")
 
+[node name="TextureRect" type="TextureRect" parent="MainControl/MainMargin/SlotsContainer/Slot2" unique_id=1646493975]
+layout_mode = 2
+stretch_mode = 5
+
 [node name="Label" type="Label" parent="MainControl/MainMargin/SlotsContainer/Slot2" unique_id=1757059794]
 layout_mode = 2
 size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 20
 text = "sword"
+
+[node name="MarginContainer" type="MarginContainer" parent="MainControl/MainMargin/SlotsContainer/Slot2" unique_id=371358458]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+
+[node name="KeyLabel" type="Label" parent="MainControl/MainMargin/SlotsContainer/Slot2/MarginContainer" unique_id=443319768]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 20
+text = "2"
 
 [node name="Slot3" type="PanelContainer" parent="MainControl/MainMargin/SlotsContainer" unique_id=1359338115]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_oogut")
 
+[node name="TextureRect" type="TextureRect" parent="MainControl/MainMargin/SlotsContainer/Slot3" unique_id=1585913715]
+layout_mode = 2
+stretch_mode = 5
+
 [node name="Label" type="Label" parent="MainControl/MainMargin/SlotsContainer/Slot3" unique_id=646900682]
 layout_mode = 2
 size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 20
 text = "sword"
+
+[node name="MarginContainer" type="MarginContainer" parent="MainControl/MainMargin/SlotsContainer/Slot3" unique_id=1009898317]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+
+[node name="KeyLabel" type="Label" parent="MainControl/MainMargin/SlotsContainer/Slot3/MarginContainer" unique_id=1278156406]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 20
+text = "3"
 
 [node name="Slot4" type="PanelContainer" parent="MainControl/MainMargin/SlotsContainer" unique_id=1189690881]
 custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_oogut")
 
+[node name="TextureRect" type="TextureRect" parent="MainControl/MainMargin/SlotsContainer/Slot4" unique_id=1951913170]
+layout_mode = 2
+stretch_mode = 5
+
 [node name="Label" type="Label" parent="MainControl/MainMargin/SlotsContainer/Slot4" unique_id=792132044]
 layout_mode = 2
 size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_constants/outline_size = 4
 theme_override_font_sizes/font_size = 20
 text = "sword"
+
+[node name="MarginContainer" type="MarginContainer" parent="MainControl/MainMargin/SlotsContainer/Slot4" unique_id=84779876]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+
+[node name="KeyLabel" type="Label" parent="MainControl/MainMargin/SlotsContainer/Slot4/MarginContainer" unique_id=259285962]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_font_sizes/font_size = 20
+text = "4"
 
 [node name="HealthBar" type="ProgressBar" parent="MainControl/MainMargin" unique_id=2053645477]
 custom_minimum_size = Vector2(500, 50)

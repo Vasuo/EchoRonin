@@ -3,11 +3,24 @@
 [ext_resource type="PackedScene" uid="uid://cmnth7ovc5sta" path="res://Scenes/Arena/Arena.tscn" id="1_uu6xs"]
 [ext_resource type="PackedScene" uid="uid://3j0eyqoluh4r" path="res://Scenes/Player/Player.tscn" id="2_r0du0"]
 [ext_resource type="PackedScene" uid="uid://di62oi28jjgkw" path="res://MainUI.tscn" id="3_r0du0"]
+[ext_resource type="Script" uid="uid://hckq6ey6ulvc" path="res://Scripts/audio_loader.gd" id="4_cm0pq"]
+[ext_resource type="Script" uid="uid://cqimcn6b3ds4x" path="res://Scripts/game_music.gd" id="5_fos0i"]
 
 [node name="Main" type="Node2D" unique_id=2049340293]
 
-[node name="Arena" parent="." unique_id=339439941 instance=ExtResource("1_uu6xs")]
+[node name="World" type="Node2D" parent="." unique_id=2129300346]
+y_sort_enabled = true
 
-[node name="Player" parent="." unique_id=1420246191 instance=ExtResource("2_r0du0")]
+[node name="Arena" parent="World" unique_id=339439941 instance=ExtResource("1_uu6xs")]
+
+[node name="Player" parent="World" unique_id=1420246191 instance=ExtResource("2_r0du0")]
+y_sort_enabled = true
+position = Vector2(576, 324)
 
 [node name="MainUi" parent="." unique_id=1139714267 instance=ExtResource("3_r0du0")]
+
+[node name="AudioLoader" type="Node" parent="." unique_id=177178476]
+script = ExtResource("4_cm0pq")
+
+[node name="GameMusic" type="Node" parent="." unique_id=1613890375]
+script = ExtResource("5_fos0i")

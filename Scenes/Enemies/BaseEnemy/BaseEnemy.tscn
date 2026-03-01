@@ -6,13 +6,9 @@
 radius = 16.0
 
 [node name="BaseEnemy" type="CharacterBody2D" unique_id=594929671]
+collision_layer = 2
+collision_mask = 13
 script = ExtResource("1_sl55s")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=806207398]
 shape = SubResource("CircleShape2D_bnspt")
-
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1768262091]
-modulate = Color(1, 0, 0, 1)
-
-[node name="AttackTimer" type="Timer" parent="." unique_id=1258470378]
-one_shot = true

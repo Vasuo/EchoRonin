@@ -2,11 +2,13 @@
 
 [ext_resource type="PackedScene" uid="uid://bcjklv5naiwlu" path="res://Scenes/Abilities/Sword/SwordAbility.tscn" id="1_jjpr7"]
 [ext_resource type="Script" uid="uid://b5wynnn1yaig4" path="res://Scripts/ability_resource.gd" id="1_yc1qh"]
+[ext_resource type="Texture2D" uid="uid://cmgy1xb5nd4go" path="res://Art/Icons/sword_low.png" id="2_gw61d"]
 
 [resource]
 script = ExtResource("1_yc1qh")
 id = "sword"
 display_name = "меч"
 description = "Базовый удар мечом"
+icon = ExtResource("2_gw61d")
 ability_scene = ExtResource("1_jjpr7")
 metadata/_custom_type_script = "uid://b5wynnn1yaig4"
