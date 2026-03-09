@@ -18,5 +18,8 @@ signal enemy_killed(enemy: Node2D, ability_dropped: Resource)
 signal wave_started(wave_number: int)
 signal wave_completed(wave_number: int)
 
-# Визуальные эффекты
-signal flash_requested(position: Vector2, color: Color, intensity: float)
+# Визуальные эффекты (уже есть)
+signal flash_requested(position: Vector2, color: Color, intensity: float, duration: float)
+
+# Добавляем новый, более простой сигнал (опционально)
+signal enemy_death_flash(position: Vector2)  # Для быстрого вызова со стандартными параметрами

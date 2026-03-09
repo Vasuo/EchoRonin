@@ -14,6 +14,7 @@ border_color = Color(0, 1, 1, 1)
 script = ExtResource("1_vfs0v")
 
 [node name="MainControl" type="Control" parent="." unique_id=2010010242]
+modulate = Color(1, 1, 0, 1)
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

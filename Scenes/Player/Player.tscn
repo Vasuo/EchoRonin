@@ -15,6 +15,9 @@
 [ext_resource type="Texture2D" uid="uid://but06vsvm0vjy" path="res://Art/Player/Animations/run_right.png" id="9_6tu5v"]
 [ext_resource type="Texture2D" uid="uid://cqlkpm8rpvaqp" path="res://Art/Player/Animations/run_up.png" id="10_spxdj"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_0u84n"]
+radius = 11.0
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_n1hvv"]
 atlas = ExtResource("3_0u84n")
 region = Rect2(0, 0, 96, 80)
@@ -792,8 +795,14 @@ _data = {
 &"idle_up": SubResource("Animation_ywgti")
 }
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_0u84n"]
-radius = 11.0
+[sub_resource type="Gradient" id="Gradient_0u84n"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_esmjy"]
+gradient = SubResource("Gradient_0u84n")
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0, 0)
 
 [node name="Player" type="CharacterBody2D" unique_id=1420246191]
 collision_mask = 22
@@ -814,6 +823,9 @@ limit_bottom = 654
 position_smoothing_enabled = true
 position_smoothing_speed = 8.0
 
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1688804713]
+shape = SubResource("CircleShape2D_0u84n")
+
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=454590232]
 sprite_frames = SubResource("SpriteFrames_n1hvv")
 animation = &"attack_right"
@@ -824,5 +836,8 @@ frame_progress = 1.0
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=2024581179]
 libraries/ = SubResource("AnimationLibrary_g84yj")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1688804713]
-shape = SubResource("CircleShape2D_0u84n")
+[node name="PointLight2D" type="PointLight2D" parent="." unique_id=970371453]
+energy = 1.5
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_esmjy")
+texture_scale = 20.0

@@ -7,6 +7,18 @@
 [ext_resource type="Texture2D" uid="uid://bn04wg8at5uf5" path="res://Art/Environment/Tiles/TilesetWallSimple.png" id="5_8qfn5"]
 [ext_resource type="Texture2D" uid="uid://cilvm3gtcrys5" path="res://Art/Environment/Tiles/TilesetInterior.png" id="6_ytq6y"]
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_8bby5"]
+polygon = PackedVector2Array(8, 4, 0, 4, 0, -4, 8, -4)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_pkqda"]
+polygon = PackedVector2Array(-8, 4, 0, 4, 0, -4, -8, -4)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_ytq6y"]
+polygon = PackedVector2Array(-2, -8, 2, -8, 2, 8, -2, 8)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_8qfn5"]
+polygon = PackedVector2Array(8, -4, 8, 4, -8, 4, -8, -4)
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ek0gv"]
 texture = ExtResource("1_fnw35")
 0:0/0 = 0
@@ -198,8 +210,10 @@ texture = ExtResource("1_fnw35")
 9:6/0 = 0
 9:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 3, -2, 3, -2, 8, 2, 8, 2, -1, -8, -1)
 10:6/0 = 0
+10:6/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_8bby5")
 10:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(8, 3, 3, 3, 3, -1, 8, -1)
 11:6/0 = 0
+11:6/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_ytq6y")
 11:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-2, 8, 2, 8, 2, -8, -2, -8)
 12:6/0 = 0
 12:6/0/physics_layer_0/polygon_0/points = PackedVector2Array(-2, 8, -2, -8, 2, -8, 2, -1, 8, -1, 8, 3, 2, 3, 2, 8)
@@ -231,8 +245,10 @@ texture = ExtResource("1_fnw35")
 9:7/0 = 0
 9:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(2, -8, 2, 3, -8, 3, -8, -1, -2, -1, -2, -8)
 10:7/0 = 0
+10:7/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_pkqda")
 10:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 3, -3, 3, -3, -1, -8, -1)
 11:7/0 = 0
+11:7/0/occlusion_layer_0/polygon_0/polygon = SubResource("OccluderPolygon2D_8qfn5")
 11:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, 3, 8, 3, 8, -1, -8, -1)
 12:7/0 = 0
 12:7/0/physics_layer_0/polygon_0/points = PackedVector2Array(-2, -8, -2, -1, -8, -1, -8, 3, 8, 3, 8, -1, 2, -1, 2, -8)
@@ -1286,6 +1302,8 @@ texture = ExtResource("6_ytq6y")
 15:19/0 = 0
 
 [resource]
+occlusion_layer_0/light_mask = 1
+occlusion_layer_0/sdf_collision = true
 physics_layer_0/collision_layer = 4
 physics_layer_0/collision_mask = 0
 sources/0 = SubResource("TileSetAtlasSource_ek0gv")

@@ -4,6 +4,8 @@ class_name Player
 # Сигналы
 signal health_changed(current: int, max: int)
 
+@onready var vfx_manager = get_node("/root/Main/VisualEffectsManager")  # Имя совпадает
+
 # Экспортируемые параметры
 @export var speed: float = 400.0
 @export var max_health: int = 100
@@ -28,7 +30,11 @@ func _ready():
 	animated_sprite.animation_finished.connect(_on_animation_finished)
 	
 	# Генерируем стартовые способности
-	call_deferred("_generate_starting_abilities")  # <-- добавить эту строку
+	call_deferred("_generate_starting_abilities")
+	
+	if vfx_manager:
+		vfx_manager.apply_neon_style(animated_sprite, Color(0, 1, 1), Color(1, 1, 0))
+		animated_sprite.material.set_shader_parameter("outline_width", 1.0)
 
 func _generate_starting_abilities():
 	var base_sword = load("res://Resources/Abilities/SwordAbility.tres")
@@ -103,6 +109,11 @@ func _unhandled_input(event):
 		start_attack(2)
 	elif event.is_action_pressed("ability_4"):
 		start_attack(3)
+	
+	if event.is_action_pressed("ui_accept"):  # пробел/enter
+		if VFXManager:
+			VFXManager.create_sparks(global_position, Color(1.0, 0.5, 0.0), 30)
+			print("Искры созданы!")  # проверка в консоли
 
 func start_attack(slot_index: int):
 	if is_attacking:
@@ -201,11 +212,29 @@ func take_damage(amount: int, source: Node2D = null):
 	if health <= 0:
 		die()
 
-func die():
-	emit_signal("health_changed", 0, max_health)
-	GlobalEvents.player_died.emit()
-	queue_free()  # Или рестарт
-
 func heal(amount: int):
 	health = min(health + amount, max_health)
 	emit_signal("health_changed", health, max_health)
+
+
+func die():
+	
+	# 👇 МОЩНЫЙ ВЗРЫВ
+	if VFXManager:
+		VFXManager.create_rapid_explosion(
+			global_position,
+			Color(1.0, 1.0, 1.0),  # Оранжевый
+			500.0,                    # Мощность
+			0.15,                     # Длительность каждой вспышки
+			15,                       # Количество вспышек
+			0.1                     # Пауза между вспышками
+		)
+	
+	emit_signal("health_changed", 0, max_health)
+	GlobalEvents.player_died.emit()
+	
+	# Можно добавить небольшую задержку перед удалением,
+	# чтобы взрыв успел начаться
+	await get_tree().create_timer(0.1).timeout
+	
+	queue_free()

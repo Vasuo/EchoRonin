@@ -45,13 +45,30 @@ func take_damage(amount: int, source: Node2D = null):
 	if health <= 0:
 		die()
 
+# base_enemy.gd - функция die()
+# base_enemy.gd - функция die()
 func die():
+	if VFXManager:
+		# Оранжевые искры, побольше
+		VFXManager.create_sparks(global_position, Color(1.0, 0.5, 0.0), 100)
+	# Вспышка при смерти
+	if VFXManager:
+		# Вместо обычной вспышки - быстрый взрыв
+		VFXManager.create_rapid_explosion(
+			global_position,
+			Color(1.0, 0.5, 0.0),  # Оранжевый
+			25.0,                    # Мощность
+			0.2,                     # Длительность каждой вспышки
+			5,                       # Количество вспышек
+			0.15                     # Пауза между вспышками
+		)
+	
 	if heal_on_kill > 0:
 		var player = get_tree().get_first_node_in_group("players")
 		if player and player.has_method("heal"):
 			player.heal(heal_on_kill)
 	
-	# ЗВУК: смерть врага (3 вариации)
+	# ЗВУК: смерть врага
 	if AudioManager:
 		if AudioManager.sound_effects.has("enemy_death_1"):
 			var variation = randi() % 3 + 1

@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 GlobalEvents="*uid://chq008rgrucc8"
 AudioManager="*uid://cg57xirse6st7"
+VFXManager="*uid://bqm0cm02eoo84"
 
 [editor_plugins]
 
@@ -84,5 +85,7 @@ ability_4={
 
 textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
+viewport/hdr_2d=true
 2d/snap/snap_2d_transforms_to_pixel=true
 2d/snap/snap_2d_vertices_to_pixel=true
+2d/sdf/oversize=2

@@ -2,6 +2,8 @@
 extends BaseEnemy
 class_name TestEnemy
 
+@onready var vfx_manager = get_node("/root/Main/VisualEffectsManager")
+
 # Уникальные параметры
 @export var speed: float = 100.0
 @export var damage: int = 10
@@ -41,6 +43,10 @@ func _ready():
 	hitbox.monitoring = false
 	
 	current_state = State.IDLE
+	
+	if vfx_manager:
+		vfx_manager.apply_neon_style(animated_sprite, Color(1, 0, 0), Color(1, 0, 1))
+		animated_sprite.material.set_shader_parameter("outline_width", 1.0)
 
 func _physics_process(delta):
 	# Обновляем ссылку на игрока

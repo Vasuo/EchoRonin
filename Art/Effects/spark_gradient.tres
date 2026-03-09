@@ -1,0 +1,14 @@
+[gd_resource type="GradientTexture2D" format=3 uid="uid://htkptpamtn2j"]
+
+[sub_resource type="Gradient" id="Gradient_iqm4v"]
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 1, 0.8, 0.8, 1, 1, 1, 0)
+metadata/_snap_enabled = true
+
+[resource]
+gradient = SubResource("Gradient_iqm4v")
+width = 16
+height = 16
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+fill_to = Vector2(0, 0)

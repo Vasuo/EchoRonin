@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://bgakyohyywfxi"]
+
+[ext_resource type="Texture2D" uid="uid://crhegym3x4vw3" path="res://Art/Icons/sword_high.png" id="1_wekm7"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4dqa4"]
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_wekm7"]
+polygon = PackedVector2Array(19, -15, 17, 19, -18, 15, -17, -14)
+
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_gd51d"]
+polygon = PackedVector2Array(-15, 12, -10, 16, -4, 17, 7, 16, 12, 13, 16, 10, 18, 5, 18, 0, 18, -5, 17, -8, 16, -11, 13, -14, 10, -15, 7, -16, 3, -16, 1, -15, -3, -14, -6, -14, -9, -13, -12, -12, -15, -10, -17, -7, -18, -2, -18, 3, -18, 8)
+
+[node name="TestOccluder" type="StaticBody2D" unique_id=1277965854]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=308297264]
+texture = ExtResource("1_wekm7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=687227906]
+shape = SubResource("RectangleShape2D_4dqa4")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="." unique_id=324452789]
+visible = false
+occluder = SubResource("OccluderPolygon2D_wekm7")
+
+[node name="LightOccluder2D 2" type="LightOccluder2D" parent="." unique_id=521079616]
+occluder = SubResource("OccluderPolygon2D_gd51d")

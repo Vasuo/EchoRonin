@@ -102,6 +102,17 @@ func _spawn_enemy():
 	# Добавляем на сцену
 	get_parent().add_child(enemy)
 	
+	# 👇 НОВЫЙ КОД: вспышка при спавне
+	if VFXManager:
+		# Слабая, быстрая вспышка
+		VFXManager.create_flash(
+			enemy.global_position,
+			Color(1.0, 1.0, 1.0),  # Фиолетовый
+			20.0,                    # Не очень ярко
+			0.5                     # Короткая
+		)
+	# 👆 КОНЕЦ НОВОГО КОДАм
+	
 	# Подключаем сигнал смерти
 	if enemy.has_signal("died"):
 		enemy.died.connect(_on_enemy_died)

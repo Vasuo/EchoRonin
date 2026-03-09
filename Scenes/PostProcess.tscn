@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://dlngdx7dcmr27"]
+
+[ext_resource type="Shader" uid="uid://d3bf7qpw41kxx" path="res://Shaders/rim_light_sdf.gdshader" id="1_0mi4j"]
+[ext_resource type="Script" uid="uid://b6qvhjgm0p7sm" path="res://Scripts/rim_light_controller.gd" id="1_rjrhm"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0mi4j"]
+shader = ExtResource("1_0mi4j")
+
+[node name="PostProcessLayer" type="CanvasLayer" unique_id=1711004029]
+layer = 10
+script = ExtResource("1_rjrhm")
+
+[node name="RimLightEffect" type="ColorRect" parent="." unique_id=2023476950]
+material = SubResource("ShaderMaterial_0mi4j")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0)

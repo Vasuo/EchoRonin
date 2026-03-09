@@ -333,6 +333,9 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_s1b4x"]
 radius = 56.0357
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_n5dy4"]
+polygon = PackedVector2Array(-4, 17, -8, 11, -8, 9, -11, 5, -7, 0, -5, -2, -5, -6, -8, -12, -5, -16, -1, -17, 4, -17, 6, -15, 6, -10, 4, -7, 4, -4, 9, -2, 6, 2, 8, 7, 5, 11, 3, 16, 0, 14)
+
 [node name="BaseEnemy" unique_id=594929671 instance=ExtResource("1_m1lps")]
 script = ExtResource("2_s6xpb")
 speed = 100.0
@@ -362,3 +365,7 @@ monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" index="0" unique_id=1230627230]
 shape = SubResource("CircleShape2D_s1b4x")
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="." index="5" unique_id=587578630]
+visible = false
+occluder = SubResource("OccluderPolygon2D_n5dy4")
