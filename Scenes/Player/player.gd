@@ -20,6 +20,7 @@ var health: int
 var input_direction: Vector2 = Vector2.ZERO
 var is_attacking: bool = false
 var current_ability: Ability = null  # Текущая активная способность
+var attack_direction: Vector2 = Vector2.DOWN
 
 enum Direction { DOWN, UP, LEFT, RIGHT }
 var current_direction = Direction.DOWN
@@ -109,11 +110,6 @@ func _unhandled_input(event):
 		start_attack(2)
 	elif event.is_action_pressed("ability_4"):
 		start_attack(3)
-	
-	if event.is_action_pressed("ui_accept"):  # пробел/enter
-		if VFXManager:
-			VFXManager.create_sparks(global_position, Color(1.0, 0.5, 0.0), 30)
-			print("Искры созданы!")  # проверка в консоли
 
 func start_attack(slot_index: int):
 	if is_attacking:
@@ -126,6 +122,7 @@ func start_attack(slot_index: int):
 		return
 	
 	is_attacking = true
+	attack_direction = get_facing_direction()
 	
 	var ability_instance = ability_resource.ability_scene.instantiate()
 	add_child(ability_instance)
@@ -153,13 +150,16 @@ func start_attack(slot_index: int):
 		finish_attack()
 		return
 	
-	current_ability.activate(self, get_facing_direction())
+	current_ability.activate(self, attack_direction)
 	
 	if animation_player and animation_player.has_animation("attack_effects"):
 		animation_player.play("attack_effects")
 
 # Возвращает вектор направления, в который "смотрит" игрок
 func get_facing_direction() -> Vector2:
+	if is_attacking:
+		return attack_direction
+	
 	match current_direction:
 		Direction.DOWN: return Vector2.DOWN
 		Direction.UP: return Vector2.UP
@@ -170,7 +170,7 @@ func get_facing_direction() -> Vector2:
 # Вызывается из AnimationPlayer в момент удара
 func apply_damage():
 	if current_ability and is_instance_valid(current_ability):
-		current_ability.apply_damage(self, get_facing_direction())
+		current_ability.apply_damage(self, attack_direction)
 
 # Вызывается по сигналу animated_sprite.animation_finished
 func _on_animation_finished():
@@ -218,6 +218,7 @@ func heal(amount: int):
 
 
 func die():
+	var death_position = global_position
 	
 	# 👇 МОЩНЫЙ ВЗРЫВ
 	if VFXManager:
@@ -229,6 +230,9 @@ func die():
 			15,                       # Количество вспышек
 			0.1                     # Пауза между вспышками
 		)
+	
+	if VFXManager:
+		VFXManager.create_explosion_sparks(death_position, Color(1.0, 0.3, 0.0))  # ярко-красный взрыв
 	
 	emit_signal("health_changed", 0, max_health)
 	GlobalEvents.player_died.emit()

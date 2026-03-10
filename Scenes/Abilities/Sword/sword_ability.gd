@@ -44,10 +44,13 @@ func _on_hitbox_body_entered(body):
 				var variation = randi() % 2 + 1
 				AudioManager.play_sound("weapon_hit_" + str(variation), body.global_position)
 		
-		# 👇 НОВЫЙ КОД: искры при попадании
+		# В _on_hitbox_body_entered:
 		if VFXManager:
-			# Бело-желтые искры, 15 штук
-			VFXManager.create_sparks(body.global_position, Color(1.0, 0.9, 0.5), 15)
+			var player = get_parent() as Player
+			if player:
+				var direction_from_player = (body.global_position - player.global_position).normalized()
+				# Используем impact_sparks с узким углом
+				VFXManager.create_impact_sparks(body.global_position, direction_from_player, Color(1.0, 0.9, 0.5))
 		
 		hitbox.monitoring = false
 

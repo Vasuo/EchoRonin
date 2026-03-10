@@ -48,9 +48,9 @@ func take_damage(amount: int, source: Node2D = null):
 # base_enemy.gd - функция die()
 # base_enemy.gd - функция die()
 func die():
+	# В base_enemy.gd, функция die()
 	if VFXManager:
-		# Оранжевые искры, побольше
-		VFXManager.create_sparks(global_position, Color(1.0, 0.5, 0.0), 100)
+		VFXManager.create_death_sparks(global_position, Color(1.0, 0.5, 0.0))
 	# Вспышка при смерти
 	if VFXManager:
 		# Вместо обычной вспышки - быстрый взрыв
@@ -59,7 +59,7 @@ func die():
 			Color(1.0, 0.5, 0.0),  # Оранжевый
 			25.0,                    # Мощность
 			0.2,                     # Длительность каждой вспышки
-			5,                       # Количество вспышек
+			3,                       # Количество вспышек
 			0.15                     # Пауза между вспышками
 		)
 	

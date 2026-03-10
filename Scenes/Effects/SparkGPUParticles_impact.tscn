@@ -1,6 +1,6 @@
-[gd_scene format=3 uid="uid://deqxl10vyugbh"]
+[gd_scene format=3 uid="uid://ddixbvui2dtuu"]
 
-[ext_resource type="Texture2D" uid="uid://htkptpamtn2j" path="res://Art/Effects/spark_gradient.tres" id="1_5kjff"]
+[ext_resource type="Texture2D" uid="uid://htkptpamtn2j" path="res://Art/Effects/spark_gradient.tres" id="1_lr27a"]
 
 [sub_resource type="Gradient" id="Gradient_w117q"]
 offsets = PackedFloat32Array(0, 0.33333334, 0.6666667, 1)
@@ -39,10 +39,12 @@ collision_bounce = 0.5
 [node name="SparkGpuParticles" type="GPUParticles2D" unique_id=837244864]
 emitting = false
 amount = 20
-texture = ExtResource("1_5kjff")
+texture = ExtResource("1_lr27a")
 lifetime = 0.2
 one_shot = true
 explosiveness = 0.7
 randomness = 0.1
 local_coords = true
+trail_enabled = true
+trail_lifetime = 0.01
 process_material = SubResource("ParticleProcessMaterial_cpviq")
